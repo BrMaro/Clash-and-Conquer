@@ -116,6 +116,7 @@ class ClashAndConquer {
                 vx,
                 vy,
                 size,
+                q
             })
 
             this.entityCounts[type]++
