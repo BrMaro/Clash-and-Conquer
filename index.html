@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Clash & Conquer - An exciting Rock, Paper, Scissors simulation game where elements battle for supremacy!">
+    <meta name="keywords" content="rock paper scissors, simulation game, clash and conquer, strategy game">
+    <title>Clash & Conquer | Rock Paper Scissors Simulation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <h1>Clash & Conquer</h1>
+            </div>
+            <div class="controls">
+                <button id="theme-toggle" aria-label="Toggle dark/light mode">
+                    <span class="light-icon">☀️</span>
+                    <span class="dark-icon">🌙</span>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <section class="game-area">
+                <div class="pre-selection" id="pre-selection">
+                    <h2>Choose Your Champion</h2>
+                    <p>Select an element to root for (this won't affect gameplay)</p>
+                    <div class="selection-options">
+                        <button class="selection-btn" data-type="rock">
+                            <div class="icon">🪨</div>
+                            <span>Rock</span>
+                        </button>
+                        <button class="selection-btn" data-type="paper">
+                            <div class="icon">📄</div>
+                            <span>Paper</span>
+                        </button>
+                        <button class="selection-btn" data-type="scissors">
+                            <div class="icon">✂️</div>
+                            <span>Scissors</span>
+                        </button>
+                    </div>
+                    <div class="game-options">
+                        <div class="option-group">
+                            <label for="entity-count">Number of each type:</label>
+                            <input type="range" id="entity-count" min="5" max="50" value="20" class="slider">
+                            <span id="entity-count-value">20</span>
+                        </div>
+
+                        <div class="option-group">
+                            <label>When entities collide:</label>
+                            <div class="radio-options">
+                                <label class="radio-label">
+                                    <input type="radio" name="collision-behavior" value="disappear" checked>
+                                    Losers disappear
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="collision-behavior" value="morph">
+                                    Losers morph into winners
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="start-game" class="primary-btn">Start Simulation</button>
+                </div>
+
+                <div class="game-container" id="game-container" style="display: none;">
+                    <canvas id="game-canvas"></canvas>
+                    <div class="game-stats">
+                        <div class="stat-item">
+                            <span class="icon">🪨</span>
+                            <span id="rock-count">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="icon">📄</span>
+                            <span id="paper-count">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="icon">✂️</span>
+                            <span id="scissors-count">0</span>
+                        </div>
+                    </div>
+                    <div class="game-controls">
+                        <button id="speed-up" class="control-btn">
+                            Speed Up <span id="speed-multiplier">x1</span>
+                        </button>
+                        <button id="reset-game" class="control-btn">Reset</button>
+                        <button id="fullscreen" class="control-btn">
+                            <span class="icon">⛶</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="victory-message" class="victory-message" style="display: none;">
+                    <h2>Victory!</h2>
+                    <div id="winner-display"></div>
+                    <p id="victory-text"></p>
+                    <button id="play-again" class="primary-btn">Play Again</button>
+                </div>
+            </section>
+
+            <aside class="ad-container">
+                <div class="ad-unit" id="sidebar-ad">
+                    <div class="ad-placeholder">
+                        <p>Advertisement</p>
+                        <!-- Google AdSense code would go here -->
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+        <section class="game-info">
+            <h2>How to Play</h2>
+            <p>Watch as Rock, Paper, and Scissors battle for supremacy following the classic rules:</p>
+            <ul>
+                <li>🪨 Rock crushes Scissors</li>
+                <li>✂️ Scissors cuts Paper</li>
+                <li>📄 Paper covers Rock</li>
+            </ul>
+            <p>The simulation continues until only one type remains!</p>
+        </section>
+
+        <footer>
+            <div class="ad-container footer-ad">
+                <div class="ad-unit" id="footer-ad">
+                    <div class="ad-placeholder">
+                        <p>Advertisement</p>
+                        <!-- Google AdSense code would go here -->
+                    </div>
+                </div>
+            </div>
+            <p>&copy; 2025 Clash & Conquer. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="game.js"></script>
+    <script src="ui.js"></script>
+</body>
+
+</html>
