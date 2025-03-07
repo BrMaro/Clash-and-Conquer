@@ -56,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     // Start game button
+    // Start game button
     const startGameButton = document.getElementById("start-game")
     startGameButton.addEventListener("click", () => {
         // Check if any ambiguity needs to be resolved
@@ -68,6 +69,9 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("pre-selection").style.display = "none"
         document.getElementById("game-container").style.display = "block"
         document.getElementById("victory-message").style.display = "none"
+
+        // Ensure the canvas is properly resized now that it is visible
+        game.resizeCanvas()
 
         // Initialize game with selected options
         game.init(selectedType, entityCount, morphLosers)
