@@ -372,9 +372,14 @@ class ClashAndConquer {
     }
 
     speedUp() {
-        this.speed = Math.min(this.speed * 1.5, 5)
-        this.speedMultiplier = Math.min(this.speedMultiplier * 1.5, 5)
-        this.updateSpeedDisplay()
+        if (this.speedMultiplier >= 8) {
+            this.speedMultiplier = 1;
+            this.speed = 1;
+        } else {
+            this.speedMultiplier *= 2;
+            this.speed *= 2;
+        }
+        this.updateSpeedDisplay();
     }
 
     stop() {
