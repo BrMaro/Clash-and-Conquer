@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.ClashAndConquerInstance = game // Make game instance globally accessible
     let selectedType = null
     let entityCount = 20
-    let morphLosers = false
+    let morphLosers = true
 
     // Theme toggle
     const themeToggle = document.getElementById("theme-toggle")
@@ -36,10 +36,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const collisionBehaviorRadios = document.querySelectorAll('input[name="collision-behavior"]')
     collisionBehaviorRadios.forEach((radio) => {
         radio.addEventListener("change", () => {
-            morphLosers = radio.value === "morph"
+            morphLosers = radio.value === "disappear"
         })
     })
-
+    console.log(morphLosers)
     // Selection buttons
     const selectionButtons = document.querySelectorAll(".selection-btn")
     selectionButtons.forEach((button) => {
@@ -56,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     // Start game button
+    // Start game button
     const startGameButton = document.getElementById("start-game")
     startGameButton.addEventListener("click", () => {
         // Check if any ambiguity needs to be resolved
@@ -68,6 +69,9 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("pre-selection").style.display = "none"
         document.getElementById("game-container").style.display = "block"
         document.getElementById("victory-message").style.display = "none"
+
+        // Ensure the canvas is properly resized now that it is visible
+        game.resizeCanvas()
 
         // Initialize game with selected options
         game.init(selectedType, entityCount, morphLosers)
@@ -191,14 +195,20 @@ function setupTouchEvents() {
     })
 }
 
-/**
- * Add Google AdSense code (commented out for now)
- * This would be uncommented and configured with your AdSense account
- */
-function setupAdsense() {
-    // Uncomment and replace with your AdSense code when ready
-    /*
-    (adsbygoogle = window.adsbygoogle || []).push({});
-    */
-}
+// Back to menu button
+const backToMenuButton = document.getElementById("back-to-menu")
+backToMenuButton.addEventListener("click", () => {
+    // Stop the game (if you want to halt the game loop)
+    if (window.ClashAndConquerInstance) {
+        window.ClashAndConquerInstance.stop();
+    }
 
+    // Hide the game container and victory message, then show the pre-selection menu
+    document.getElementById("game-container").style.display = "none"
+    document.getElementById("victory-message").style.display = "none"
+    document.getElementById("pre-selection").style.display = "block"
+
+    // Optionally, reset any selection buttons (if needed)
+    const selectionButtons = document.querySelectorAll(".selection-btn")
+    selectionButtons.forEach((btn) => btn.classList.remove("selected"))
+})

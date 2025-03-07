@@ -73,12 +73,12 @@
                             <label>When entities collide:</label>
                             <div class="radio-options">
                                 <label class="radio-label">
-                                    <input type="radio" name="collision-behavior" value="disappear" checked>
-                                    Losers disappear
-                                </label>
-                                <label class="radio-label">
                                     <input type="radio" name="collision-behavior" value="morph">
                                     Losers morph into winners
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="collision-behavior" value="disappear" checked>
+                                    Losers disappear
                                 </label>
                             </div>
                         </div>
@@ -103,6 +103,7 @@
                         </div>
                     </div>
                     <div class="game-controls">
+                        <button id="back-to-menu" class="control-btn">Back to Menu</button>
                         <button id="speed-up" class="control-btn">
                             Speed Up <span id="speed-multiplier">x1</span>
                         </button>
