@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.ClashAndConquerInstance = game // Make game instance globally accessible
     let selectedType = null
     let entityCount = 20
-    let morphLosers = false
+    let morphLosers = true
 
     // Theme toggle
     const themeToggle = document.getElementById("theme-toggle")
@@ -36,10 +36,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const collisionBehaviorRadios = document.querySelectorAll('input[name="collision-behavior"]')
     collisionBehaviorRadios.forEach((radio) => {
         radio.addEventListener("change", () => {
-            morphLosers = radio.value === "morph"
+            morphLosers = radio.value === "disappear"
         })
     })
-
+    console.log(morphLosers)
     // Selection buttons
     const selectionButtons = document.querySelectorAll(".selection-btn")
     selectionButtons.forEach((button) => {
@@ -190,15 +190,3 @@ function setupTouchEvents() {
         lastTap = currentTime
     })
 }
-
-/**
- * Add Google AdSense code (commented out for now)
- * This would be uncommented and configured with your AdSense account
- */
-function setupAdsense() {
-    // Uncomment and replace with your AdSense code when ready
-    /*
-    (adsbygoogle = window.adsbygoogle || []).push({});
-    */
-}
-
