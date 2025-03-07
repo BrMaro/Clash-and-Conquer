@@ -65,33 +65,37 @@ class ClashAndConquer {
     }
 
     init(playerChoice = null, entitiesPerType = 20, morphLosers = false) {
-        this.playerChoice = playerChoice
-        this.morphLosers = morphLosers
-        this.entities = []
-        this.speed = 1
-        this.speedMultiplier = 1
-        this.isRunning = true
+        // Warn the player if they are spawning many sprites on a small screen
+        const spriteThreshold = 30;
+        if (entitiesPerType > spriteThreshold && !document.fullscreenElement) {
+            alert("Warning: Spawning a large number of sprites on a small screen may cause performance issues. For the best experience, please switch to full screen mode before starting the simulation.");
+        }
+
+        this.playerChoice = playerChoice;
+        this.morphLosers = morphLosers;
+        this.entities = [];
+        this.speed = 1;
+        this.speedMultiplier = 1;
+        this.isRunning = true;
 
         // Reset entity counts
         this.entityCounts = {
             [TYPES.ROCK]: 0,
             [TYPES.PAPER]: 0,
             [TYPES.SCISSORS]: 0,
-        }
+        };
 
         // Create entities based on user input
-        this.createEntities(TYPES.ROCK, entitiesPerType)
-        this.createEntities(TYPES.PAPER, entitiesPerType)
-        this.createEntities(TYPES.SCISSORS, entitiesPerType)
+        this.createEntities(TYPES.ROCK, entitiesPerType);
+        this.createEntities(TYPES.PAPER, entitiesPerType);
+        this.createEntities(TYPES.SCISSORS, entitiesPerType);
 
-        // Update counters
-        this.updateCounters()
-
-        // Update speed display
-        this.updateSpeedDisplay()
+        // Update counters and speed display
+        this.updateCounters();
+        this.updateSpeedDisplay();
 
         // Start game loop
-        this.gameLoop()
+        this.gameLoop();
     }
 
     createEntities(type, count) {
@@ -116,7 +120,6 @@ class ClashAndConquer {
                 vx,
                 vy,
                 size,
-                q
             })
 
             this.entityCounts[type]++
@@ -373,9 +376,14 @@ class ClashAndConquer {
     }
 
     speedUp() {
-        this.speed = Math.min(this.speed * 1.5, 5)
-        this.speedMultiplier = Math.min(this.speedMultiplier * 1.5, 5)
-        this.updateSpeedDisplay()
+        if (this.speedMultiplier >= 8) {
+            this.speedMultiplier = 1;
+            this.speed = 1;
+        } else {
+            this.speedMultiplier *= 2;
+            this.speed *= 2;
+        }
+        this.updateSpeedDisplay();
     }
 
     stop() {
